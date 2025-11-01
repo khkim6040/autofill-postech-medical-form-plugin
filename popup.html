@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTECH 의료공제 자동완성</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>POSTECH 의료공제 자동완성</h1>
+            <p class="subtitle">개인정보를 저장하여 자동완성에 사용합니다</p>
+        </header>
+
+        <form id="userDataForm">
+            <div class="form-group">
+                <label for="name">성명 <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">학과 <span class="required">*</span></label>
+                <select id="department" name="department" required>
+                    <option value="">선택</option>
+                    <option value="무은재학부">무은재학부</option>
+                    <option value="수학과">수학과</option>
+                    <option value="물리학과">물리학과</option>
+                    <option value="화학과">화학과</option>
+                    <option value="생명과학과">생명과학과</option>
+                    <option value="신소재공학과">신소재공학과</option>
+                    <option value="기계공학과">기계공학과</option>
+                    <option value="산업경영공학과">산업경영공학과</option>
+                    <option value="전자전기공학과">전자전기공학과</option>
+                    <option value="컴퓨터공학과">컴퓨터공학과</option>
+                    <option value="화학공학과">화학공학과</option>
+                    <option value="IT융합공학과">IT융합공학과</option>
+                    <option value="반도체공학과">반도체공학과</option>
+                    <option value="환경공학부">환경공학부</option>
+                    <option value="인공지능대학원">인공지능대학원</option>
+                    <option value="첨단원자력공학부">첨단원자력공학부</option>
+                    <option value="친환경소재대학원">친환경소재대학원</option>
+                    <option value="시스템생명공학부">시스템생명공학부</option>
+                    <option value="첨단재료과학부">첨단재료과학부</option>
+                    <option value="융합대학원">융합대학원</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="course">과정 <span class="required">*</span></label>
+                <select id="course" name="course" required>
+                    <option value="">선택</option>
+                    <option value="학사">학사</option>
+                    <option value="석사">석사</option>
+                    <option value="박사">박사</option>
+                    <option value="통합">통합</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="studentId">학번 <span class="required">*</span></label>
+                <input type="text" id="studentId" name="studentId" required>
+            </div>
+
+            <div class="form-group">
+                <label>성별 <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="male" required>
+                        남성
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="female" required>
+                        여성
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="phone">휴대폰 <span class="required">*</span></label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">이메일 <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@postech.ac.kr" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bank">입금은행</label>
+                <select id="bank" name="bank">
+                    <option value="">선택</option>
+                    <option value="국민은행">국민은행</option>
+                    <option value="농협은행">농협은행</option>
+                    <option value="우리은행">우리은행</option>
+                    <option value="기업은행">기업은행</option>
+                    <option value="신한은행">신한은행</option>
+                    <option value="하나은행">하나은행</option>
+                    <option value="카카오뱅크">카카오뱅크</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="accountNumber">계좌번호</label>
+                <input type="text" id="accountNumber" name="accountNumber" placeholder="숫자만 입력">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="save-btn">저장</button>
+                <button type="button" class="clear-btn">데이터 초기화</button>
+            </div>
+        </form>
+
+        <div id="message" class="message"></div>
+
+        <footer class="footer">
+            <p>※ 모든 데이터는 본인의 브라우저에만 저장됩니다</p>
+            <p>※ 외부 서버로 전송되지 않습니다</p>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "POSTECH 의료공제 신청 자동완성",
+  "version": "1.0.0",
+  "description": "POSTECH 학생의료공제회 신청서 자동완성 크롬 확장 프로그램",
+  
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  
+  "host_permissions": [
+    "https://smcp.postech.ac.kr/*"
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "POSTECH 의료공제 자동완성",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://smcp.postech.ac.kr/apply-for-deduction/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
