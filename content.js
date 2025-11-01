@@ -9,10 +9,24 @@
     }
 
     function initAutofill() {
+        // POSTECH 의료공제 신청 페이지에서만 실행
+        if (!isValidMedicalPage()) {
+            return;
+        }
+        
         // 추가 지연을 두어 동적 콘텐츠 로딩 완료 대기
         setTimeout(() => {
             loadAndFillData();
         }, 1000);
+    }
+
+    function isValidMedicalPage() {
+        const currentUrl = window.location.href;
+        const isPosTechDomain = currentUrl.includes('smcp.postech.ac.kr');
+        const isApplyForDeduction = currentUrl.includes('/apply-for-deduction/');
+        const hasModEditor = currentUrl.includes('mod=editor');
+        
+        return isPosTechDomain && isApplyForDeduction && hasModEditor;
     }
 
     function loadAndFillData() {
