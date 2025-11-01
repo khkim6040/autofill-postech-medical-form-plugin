@@ -18,9 +18,7 @@
     "default_popup": "popup.html",
     "default_title": "POSTECH 의료공제 자동완성",
     "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "128": "logo.png"
     }
   },
   
@@ -29,17 +27,10 @@
       "matches": ["https://smcp.postech.ac.kr/apply-for-deduction/*"],
       "js": ["content.js"],
       "run_at": "document_end"
-    },
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_end"
     }
   ],
   
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "128": "logo.png"
   }
 }
