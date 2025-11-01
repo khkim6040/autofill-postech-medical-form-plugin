@@ -163,7 +163,7 @@
 
 
     function showAutofillNotification() {
-        showToastNotification('POSTECH 의료공제: 필드들이 자동완성되었습니다', 'success');
+        showToastNotification('POSTECH 의료공제: 저장된 정보를 불러왔습니다.', 'success');
     }
 
     function showToastNotification(message, type = 'success') {
@@ -227,7 +227,7 @@
     }
 
     // 메시지 리스너 추가
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         if (message.action === 'showToast') {
             showToastNotification(message.message, message.type);
             sendResponse({success: true});

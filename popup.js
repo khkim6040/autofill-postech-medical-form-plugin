@@ -32,28 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
         const userData = {};
 
-        // 필수 필드 검증
-        const requiredFields = ['name', 'department', 'course', 'studentId', 'gender', 'phone', 'email'];
-        let isValid = true;
-
-        for (const field of requiredFields) {
+        // 모든 필드를 선택적으로 저장 (값이 있는 경우만)
+        const allFields = ['name', 'department', 'course', 'studentId', 'gender', 'phone', 'email', 'bank', 'accountNumber'];
+        
+        for (const field of allFields) {
             const value = formData.get(field);
-            if (!value || value.trim() === '') {
-                showMessage('모든 필수 항목을 입력해주세요.', 'error');
-                isValid = false;
-                break;
+            if (value && value.trim() !== '') {
+                userData[field] = value.trim();
             }
-            userData[field] = value.trim();
         }
 
-        if (!isValid) return;
-
-        // 선택 필드 추가
-        userData.bank = formData.get('bank') || '';
-        userData.accountNumber = formData.get('accountNumber') || '';
+        // 휴대폰과 이메일이 모두 있는 경우만 합쳐서 저장
+        if (userData.phone && userData.email) {
+            userData.phoneEmail = `${userData.phone} & ${userData.email}`;
+        } else if (userData.phone) {
+            userData.phoneEmail = userData.phone;
+        } else if (userData.email) {
+            userData.phoneEmail = userData.email;
+        }
         
-        // 휴대폰과 이메일을 합쳐서 저장
-        userData.phoneEmail = `${userData.phone} & ${userData.email}`;
         userData.savedAt = new Date().toISOString();
 
         // Chrome Storage에 저장
@@ -67,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (tabs[0]) {
                         chrome.tabs.sendMessage(tabs[0].id, {
                             action: 'showToast',
-                            message: 'POSTECH 의료공제 정보가 저장되었습니다!',
+                            message: 'POSTECH 의료공제: 정보가 저장되었습니다.',
                             type: 'success'
                         }).catch(() => {
                             // content script가 없는 페이지에서는 무시
