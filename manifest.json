@@ -6,7 +6,8 @@
   
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   
   "host_permissions": [
@@ -26,6 +27,11 @@
   "content_scripts": [
     {
       "matches": ["https://smcp.postech.ac.kr/apply-for-deduction/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_end"
     }

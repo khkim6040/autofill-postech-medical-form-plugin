@@ -62,7 +62,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage('저장 중 오류가 발생했습니다.', 'error');
                 console.error('Storage error:', chrome.runtime.lastError);
             } else {
-                showMessage('저장되었습니다!', 'success');
+                // 브라우저에 토스트 메시지 표시
+                chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+                    if (tabs[0]) {
+                        chrome.tabs.sendMessage(tabs[0].id, {
+                            action: 'showToast',
+                            message: 'POSTECH 의료공제 정보가 저장되었습니다!',
+                            type: 'success'
+                        }).catch(() => {
+                            // content script가 없는 페이지에서는 무시
+                        });
+                    }
+                });
+                
+                // 즉시 플러그인 창 닫기
+                window.close();
             }
         });
     }

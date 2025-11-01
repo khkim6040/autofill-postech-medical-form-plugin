@@ -157,57 +157,81 @@
         console.log(`POSTECH Medical Autofill - Filled ${filledCount} fields`);
         
         if (filledCount > 0) {
-            showAutofillNotification(filledCount);
+            showAutofillNotification();
         }
     }
 
 
-    function showAutofillNotification(filledCount) {
+    function showAutofillNotification() {
+        showToastNotification('POSTECH 의료공제: 필드들이 자동완성되었습니다', 'success');
+    }
+
+    function showToastNotification(message, type = 'success') {
         // 알림 div 생성
         const notification = document.createElement('div');
+        
+        const backgroundColor = type === 'success' ? '#c8007a' : '#dc3545';
+        const icon = type === 'success' ? '✅' : '❌';
+        
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #c8007a;
+            background: ${backgroundColor};
             color: white;
             padding: 15px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 999999;
             animation: slideIn 0.3s ease-out;
+            max-width: 400px;
         `;
 
         notification.innerHTML = `
             <div style="display: flex; align-items: center; gap: 10px;">
-                <span>✅</span>
-                <span>POSTECH 의료공제 자동완성: ${filledCount}개 필드가 자동완성되었습니다</span>
+                <span style="font-size: 16px;">${icon}</span>
+                <span>${message}</span>
             </div>
         `;
 
-        // 애니메이션 CSS 추가
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-        `;
-        document.head.appendChild(style);
+        // 애니메이션 CSS 추가 (한 번만)
+        if (!document.querySelector('#postech-toast-styles')) {
+            const style = document.createElement('style');
+            style.id = 'postech-toast-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
 
         document.body.appendChild(notification);
 
-        // 5초 후 알림 제거
+        // 3초 후 알림 제거
         setTimeout(() => {
-            notification.style.animation = 'slideIn 0.3s ease-out reverse';
+            notification.style.animation = 'slideOut 0.3s ease-out';
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.parentNode.removeChild(notification);
                 }
             }, 300);
-        }, 5000);
+        }, 3000);
     }
+
+    // 메시지 리스너 추가
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.action === 'showToast') {
+            showToastNotification(message.message, message.type);
+            sendResponse({success: true});
+        }
+    });
 
 })();
