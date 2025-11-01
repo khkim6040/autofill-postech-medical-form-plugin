@@ -6,12 +6,7 @@
   
   "permissions": [
     "storage",
-    "activeTab",
-    "tabs"
-  ],
-  
-  "host_permissions": [
-    "https://smcp.postech.ac.kr/*"
+    "activeTab"
   ],
   
   "action": {
