@@ -1,6 +1,7 @@
 # POSTECH 의료공제 신청 자동완성
 
-POSTECH 학생의료공제회 신청서를 자동으로 완성해주는 Chrome 확장 프로그램입니다.
+POSTECH 학생의료공제회 신청서를 자동으로 완성해주는 Chrome 확장 프로그램입니다.  
+[개인정보 방침](privacy_policy.md)
 
 ## 기능
 

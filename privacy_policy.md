@@ -17,9 +17,6 @@ Required to store user's personal information (name, student ID, department, acc
 **ActiveTab justification:**
 Required to verify if the current tab is the POSTECH medical mutual aid application page and to execute autofill functionality only on that specific page.
 
-**Tabs justification:**
-Required to check the current tab's URL in the extension to restrict functionality to only the correct pages.
-
 **Host Permission justification:**
 Required to access the POSTECH medical mutual aid application site (https://smcp.postech.ac.kr) to execute form autofill functionality exclusively on this domain.
 
