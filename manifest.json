@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "POSTECH 의료공제 신청 자동완성",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "POSTECH 학생의료공제회 신청서 자동완성 크롬 확장 프로그램",
   
   "permissions": [
