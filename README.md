@@ -19,8 +19,8 @@ POSTECH 학생의료공제회 신청서를 자동으로 완성해주는 Chrome �
 
 ### 1. 확장 프로그램을 열고 개인정보 입력 및 저장
 
-<img src="form1.png" width=40% height=50% />
-<img src="form2.png" width=40% height=50% />
+<img src="form1.png" width=30% height=50% />
+<img src="form2.png" width=30% height=50% />
 
 
 ### 2. [의료공제 신청 페이지](https://smcp.postech.ac.kr/apply-for-deduction/?mod=editor&pageid=1) 진입 시 입력된 개인정보가 자동으로 로딩됨
